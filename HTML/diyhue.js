@@ -192,6 +192,7 @@ $(function () {
     noUiSlider.create(slider, {
         start: 20,
         connect: [true, false],
+        tooltips: [true],
         step: 1,
         behaviour: 'drag-tap',
         orientation: 'horizontal', // 'horizontal' or 'vertical'

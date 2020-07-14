@@ -223,7 +223,6 @@ void infoLight(RgbColor color) {
   }
 }
 
-
 void apply_scene(uint8_t new_scene) {
   for (uint8_t light = 0; light < lightsCount; light++) {
     if ( new_scene == 1) {
@@ -322,16 +321,6 @@ void lightEngine() {
                 }
               }
 
-              if (pixel <= pixelOffset) {
-                if (light == lightsCount - 1) {
-                  if (pixel > pixelOffset - transitionLeds / 2 - 1) {
-                    strip->SetPixelColor(pixel - 1, blending(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
-                  } else {
-                    strip->SetPixelColor(pixel - 1, convFloat(lights[light].currentColors));
-                  }
-                }
-              }
-
               if (pixel < transitionLeds / 2) {
                 strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, blending( lights[light - 1].currentColors, lights[light].currentColors, pixel + 1));
               }
@@ -340,6 +329,13 @@ void lightEngine() {
               }
               else
               {
+                if (pixel <= pixelOffset && light == lightsCount - 1) {
+                  if (pixel > pixelOffset - transitionLeds / 2 - 1) {
+                    strip->SetPixelColor(pixel, blending(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
+                  } else {
+                    strip->SetPixelColor(pixel, convFloat(lights[light].currentColors));
+                  }
+                }
                 strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, convFloat(lights[light].currentColors));
               }
               pixelSum = 0;
@@ -382,16 +378,6 @@ void lightEngine() {
                 }
               }
 
-              if (pixel <= pixelOffset) {
-                if (light == lightsCount - 1) {
-                  if (pixel > pixelOffset - transitionLeds / 2 - 1) {
-                    strip->SetPixelColor(pixel - 1, blending(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
-                  } else {
-                    strip->SetPixelColor(pixel - 1, convFloat(lights[light].currentColors));
-                  }
-                }
-              }
-
               if (pixel < transitionLeds / 2) {
                 strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, blending( lights[light - 1].currentColors, lights[light].currentColors, pixel + 1));
               }
@@ -400,6 +386,13 @@ void lightEngine() {
               }
               else
               {
+                if (pixel <= pixelOffset && light == lightsCount - 1) {
+                  if (pixel > pixelOffset - transitionLeds / 2 - 1) {
+                    strip->SetPixelColor(pixel, blending(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
+                  } else {
+                    strip->SetPixelColor(pixel, convFloat(lights[light].currentColors));
+                  }
+                }
                 strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, convFloat(lights[light].currentColors));
               }
               pixelSum = 0;
@@ -954,16 +947,6 @@ void entertainment() {
               }
             }
 
-            if (pixel <= pixelOffset) {
-              if (light == lightsCount - 1) {
-                if (pixel > pixelOffset - transitionLeds / 2 - 1) {
-                  strip->SetPixelColor(pixel - 1, blendingEntert(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
-                } else {
-                  strip->SetPixelColor(pixel - 1, convFloat(lights[light].currentColors));
-                }
-              }
-            }
-
             if (pixel < transitionLeds / 2) {
               strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, blendingEntert( lights[light - 1].currentColors, lights[light].currentColors, pixel + 1));
             }
@@ -972,6 +955,13 @@ void entertainment() {
             }
             else
             {
+              if (pixel <= pixelOffset && light == lightsCount - 1) {
+                if (pixel > pixelOffset - transitionLeds / 2 - 1) {
+                  strip->SetPixelColor(pixel, blendingEntert(lights[light].currentColors, lights[0].currentColors, pixel + 1 - (pixelOffset - transitionLeds / 2 )));
+                } else {
+                  strip->SetPixelColor(pixel, convFloat(lights[light].currentColors));
+                }
+              }
               strip->SetPixelColor(pixel + pixelSum + transitionLeds + pixelOffset, convInt(lights[light].currentColors));
             }
             pixelSum = 0;

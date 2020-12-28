@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>" + String(lightName) + " - DiyHue</title>
     <link rel="icon" type="image/png" href="https://diyhue.org/wp-content/uploads/2019/11/cropped-Zeichenfl%C3%A4che-4-1-32x32.png" sizes="32x32">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://diyhue.org/cdn/nouislider.css" />
 </head>
 <body>
@@ -22,16 +22,11 @@
                 </ul>
             </div>
             <div class="nav-content">
-                <ul class="ui top attached tabular menu">
-					<div class="item" data-tab="home">One</div>
-					<div class="item" data-tab="preferences">One</div>
-					<div class="item" data-tab="network">One</div>
-					<div class="item" data-tab="one">One</div>
-					
-                    <li class="item" title="#home"><a class="active" href="#home">Home</a></li>
-                    <li class="item" title="#preferences"><a href="#preferences">Preferences</a></li>
-                    <li class="item" title="#network"><a href="#network">Network settings</a></li>
-                    <li class="item" title="/update"><a href="/update">Updater</a></li>
+                <ul class="tabs tabs-transparent">
+                    <li class="tab" title="#home"><a class="active" href="#home">Home</a></li>
+                    <li class="tab" title="#preferences"><a href="#preferences">Preferences</a></li>
+                    <li class="tab" title="#network"><a href="#network">Network settings</a></li>
+                    <li class="tab" title="/update"><a href="/update">Updater</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,9 +37,9 @@
             <li><a target="_blank" href="https://diyhue.slack.com/">Slack channel</a></li>
         </ul>
 
-        <div class="ui container">
+        <div class="container">
             <div class="section">
-                <div class="ui bottom attached tab segment" data-tab="home">
+                <div id="home" class="col s12">
                     <form>
                         <input type="hidden" name="section" value="1">
                         <div class="row">
@@ -85,7 +80,7 @@
                     </form>
                 </div>
 
-                <div class="ui bottom attached tab segment" data-tab="preferences">
+                <div id="preferences" class="col s12">
                     <form method="POST" action="/">
                         <input type="hidden" name="section" value="1">
                         <div class="row">
@@ -96,7 +91,7 @@
                         </div>
                         <div class="row">
                             <div class="col s12 m6">
-                                <label for="startup">Default Power</label>
+                                <label for="startup">Default Power:</label>
                                 <select name="startup" id="startup">
                                     <option value="0">Last State</option>
                                     <option value="1">On</option>
@@ -106,7 +101,7 @@
                         </div>
                         <div class="row">
                             <div class="col s12 m6">
-                                <label for="scene">Default Scene</label>
+                                <label for="scene">Default Scene:</label>
                                 <select name="scene" id="scene">
                                     <option value="0">Relax</option>
                                     <option value="1">Read</option>
@@ -124,17 +119,17 @@
                         </div>
                         <div class="row">
                             <div class="col s4 m3">
-                                <label for="lightscount" class="col-form-label">Lights count</label>
-                                <input type="number" id="lightscount" name="lightscount">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s4 m3">
                                 <label for="pixelcount" class="col-form-label">Pixel count</label>
                                 <input type="number" id="pixelcount" name="pixelcount">
                             </div>
                         </div>
-                        <label class="form-label">Lights divisions</label>
+                        <div class="row">
+                            <div class="col s4 m3">
+                                <label for="lightscount" class="col-form-label">Lights count</label>
+                                <input type="number" id="lightscount" name="lightscount">
+                            </div>
+                        </div>
+                        <label class="form-label">Light division</label>
                         </br>
                         <label>Available Pixels:</label>
                         <label class="availablepixels"><b>null</b></label>
@@ -142,13 +137,7 @@
                         </div>
                         <div class="row">
                             <div class="col s4 m3">
-                                <label for="pixeloffset" class="col-form-label">Pixel offset</label>
-                                <input type="number" id="pixeloffset" name="pixeloffset">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s4 m3">
-                                <label for="transitionleds">Transition leds</label>
+                                <label for="transitionleds">Transition leds:</label>
                                 <select name="transitionleds" id="transitionleds">
                                     <option value="0">0</option>
                                     <option value="2">2</option>
@@ -174,7 +163,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="control-label col s10">HW buttons</label>
+                            <label class="control-label col s10">HW buttons:</label>
                             <div class="col s10">
                                 <div class="switch section">
                                     <label>
@@ -200,18 +189,19 @@
                         </div>
                         <div class="row">
                             <div class="col s10">
-                                <button type="submit" class="ui button">Save</button>
+                                <button type="submit" class="waves-effect waves-light btn teal">Save</button>
+                                <!--<button type="submit" name="reboot" class="waves-effect waves-light btn grey lighten-1">Reboot</button>-->
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <div class="ui bottom attached tab segment" data-tab="network">
+                <div id="network" class="col s12">
                     <form method="POST" action="/">
                         <input type="hidden" name="section" value="2">
                         <div class="row">
                             <div class="col s12">
-                                <label class="control-label">Manual IP assignment</label>
+                                <label class="control-label">Manual IP assignment:</label>
                                 <div class="switch section">
                                     <label>
                                         Disable
@@ -240,7 +230,9 @@
                         </div>
                         <div class="row">
                             <div class="col s10">
-                                <button type="submit" class="ui button">Save</button>
+                                <button type="submit" class="waves-effect waves-light btn teal">Save</button>
+                                <!--<button type="submit" name="reboot" class="waves-effect waves-light btn grey lighten-1">Reboot</button>-->
+                                <!--<button type="submit" name="reboot" class="waves-effect waves-light btn grey lighten-1">Reboot</button>-->
                             </div>
                         </div>
                     </form>
@@ -250,7 +242,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://diyhue.org/cdn/nouislider.js"></script>
     <script src="https://znet.studio/diyhue.js"></script>
 
